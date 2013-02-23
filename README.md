@@ -15,7 +15,7 @@ This addon is a proof of concept. There might be errors, so take care! Follow th
 
 * Enter an existing folder in the "Folder" Settings field. 
 * By default, the path to "files" is prefilled. If you enter "files" as a setting, you can easily upload LESS files via the Mediapool
-* All files in the specified folder that have an extension of ??".less"?? will be parsed as CSS files. They will be written in the same folder as the source file. 
+* All files in the specified folder that have an extension of ".less" will be parsed as CSS files. They will be written in the same folder as the source file. 
 * Caching is activated 
 
 Examples
@@ -23,8 +23,8 @@ Examples
 
 If you use the Mediapool and have "files" entered as folder, include the following line in your main HTML template, assuming that you uploaded "yourfile.less":
 
-<link href="<?php echo $REX['HTDOCS_PATH'] ?>files/yourfile.css" rel="stylesheet">
+    <link href="<?php echo $REX['HTDOCS_PATH'] ?>files/yourfile.css" rel="stylesheet">
 
 Accordingly, if you entered another location as folder, include the following line in your main HTML template, assuming that you entered "layout/css" in the addon settings section:
 
-<link href="<?php echo $REX['HTDOCS_PATH'] ?>layout/css/yourfile.css" rel="stylesheet">
+    <link href="<?php echo $REX['HTDOCS_PATH'] ?>layout/css/yourfile.css" rel="stylesheet">
