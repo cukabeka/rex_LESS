@@ -2,7 +2,7 @@
 /**
  * Addon_Template
  *
- * @author http://rexdev.de
+ * @author http://magnetum.de
  * @link   https://github.com/cukabeka
  *
  * @package redaxo4.3
@@ -13,12 +13,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 if (class_exists('lessc')) {
-
-<<<<<<< HEAD
+	
+	if (!isset($cacheFile)) $cacheFile = '';
+	
 	$addon = ($REX["ADDON"]['rex_less']);
-=======
-	$addon = ($REX["ADDON"]['rex_LESS']);
->>>>>>> d65427a87cb5f24c9ad40c04e553a371effa3232
 
 	$base_path = explode("redaxo/include", $REX['INCLUDE_PATH']);
 	$base_path = $base_path[0];
@@ -41,14 +39,11 @@ if (class_exists('lessc')) {
 			}
 	
 			$less = new lessc;
-<<<<<<< HEAD
 			if($addon['settings']['SELECT'][1] != 'FALSE') $less->setFormatter($addon['settings']['SELECT'][1]);
-=======
->>>>>>> d65427a87cb5f24c9ad40c04e553a371effa3232
 			$newCache = $less -> cachedCompile($cache);
 	
 			if (!is_array($cache) || $newCache["updated"] > $cache["updated"]) {
-				file_put_contents($cacheFile, serialize($newCache));
+				if ($cacheFile != '') file_put_contents($cacheFile, serialize($newCache));
 				file_put_contents($outputFile, $newCache['compiled']);
 			}
 
