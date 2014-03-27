@@ -32,7 +32,7 @@ if (class_exists('lessc')) {
 
 			$less = new lessc;
 
-			if (file_exists($cacheFile)) {
+			if (isset($cacheFile) && file_exists($cacheFile)) {
 				$cache = unserialize(file_get_contents($cacheFile));
 			} else {
 				$cache = $inputFile;
@@ -42,7 +42,7 @@ if (class_exists('lessc')) {
 			if($addon['settings']['SELECT'][1] != 'FALSE') $less->setFormatter($addon['settings']['SELECT'][1]);
 			$newCache = $less -> cachedCompile($cache);
 	
-			if (!is_array($cache) || $newCache["updated"] > $cache["updated"]) {
+			if (isset($cacheFile) && (!is_array($cache) || $newCache["updated"] > $cache["updated"])) {
 				if ($cacheFile != '') file_put_contents($cacheFile, serialize($newCache));
 				file_put_contents($outputFile, $newCache['compiled']);
 			}
