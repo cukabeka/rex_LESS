@@ -60,25 +60,7 @@ $REX['ADDON'][$mypage]['params_cast'] = array (
 // DYNAMISCHE SETTINGS
 ////////////////////////////////////////////////////////////////////////////////
 // --- DYN
-<<<<<<< HEAD
-$REX["ADDON"]["rex_less"]["settings"] = array (
-  'TEXTINPUT' => 
-  array (
-    1 => 'files',
-  ),
-  'SELECT' => 
-  array (
-    1 => 'classic',
-  ),
-  'MEDIA' => 
-  array (
-    1 => '',
-  ),
-  'MEDIALIST' => 
-  array (
-    1 => '',
-  ),
-=======
+
 $REX["ADDON"][$mypage]["settings"] = array (
   'TEXTINPUT' =>
   array (
@@ -96,7 +78,6 @@ $REX["ADDON"][$mypage]["settings"] = array (
   array (
     1 => '',
   )
->>>>>>> d65427a87cb5f24c9ad40c04e553a371effa3232
 );
 // --- /DYN
 
