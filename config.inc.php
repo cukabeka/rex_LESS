@@ -25,11 +25,7 @@ $myroot = $REX['INCLUDE_PATH'].'/addons/'.$mypage.'/';
 
 // ADDON REX COMMONS
 ////////////////////////////////////////////////////////////////////////////////
-<<<<<<< HEAD
 $REX['ADDON']['rxid'][$mypage] = 'rex_less';
-=======
-$REX['ADDON']['rxid'][$mypage] = 'rex_LESS';
->>>>>>> d65427a87cb5f24c9ad40c04e553a371effa3232
 $REX['ADDON']['page'][$mypage] = $mypage;
 $REX['ADDON']['name'][$mypage] = 'rexLESS';
 $Revision = '';
