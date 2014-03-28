@@ -36,8 +36,8 @@ $Revision = '';
 $REX['ADDON'][$mypage]['VERSION'] = array
 (
 'VERSION'      => 0,
-'MINORVERSION' => 3,
-'SUBVERSION'   => 8,
+'MINORVERSION' => 4,
+'SUBVERSION'   => 0,
 );
 $REX['ADDON']['version'][$mypage]     = implode('.', $REX['ADDON'][$mypage]['VERSION']);
 $REX['ADDON']['author'][$mypage]      = 'rexdev.de';
