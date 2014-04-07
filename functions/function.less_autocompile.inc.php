@@ -14,15 +14,44 @@
 
 if (class_exists('lessc')) {
 	
-	if (!isset($cacheFile)) $cacheFile = '';
-	
+	if (!function_exists('autoCompileLess')) {
+
+		function autoCompileLess($inputFile, $outputFile) {
+
+			// load the cache
+			$cacheFile = $inputFile . ".cache";
+
+			if (file_exists($cacheFile)) {
+				$cache = unserialize(file_get_contents($cacheFile));
+			} else {
+				$cache = ($inputFile) ;
+			}
+
+			$less = new lessc;
+			
+			if ($addon['settings']['SELECT'][1] != 'FALSE')
+				{
+					$less -> setFormatter($addon['settings']['SELECT'][1]);
+				}
+			$newCache = $less -> cachedCompile($cache);
+			
+			if (!is_array($cache) || $newCache["updated"] > $cache["updated"]) {
+				file_put_contents($cacheFile, serialize($newCache));
+				file_put_contents($outputFile, $newCache['compiled']);
+			}
+		}
+
+	}
+
+
 	$addon = ($REX["ADDON"]['rex_less']);
 
 	$base_path = explode("redaxo/include", $REX['INCLUDE_PATH']);
 	$base_path = $base_path[0];
 	$user_path = rtrim($addon['settings']['TEXTINPUT'][1], "/");
-	$output_path = $base_path . $user_path. "/";
+	$output_path = $base_path . $user_path . "/";
 
+	
 	$pattern = $base_path . $user_path . '/*.less';
 	$less_files = glob($pattern);
 
@@ -30,39 +59,7 @@ if (class_exists('lessc')) {
 		foreach ($less_files as $inputFile) {
 			$outputFile = basename($inputFile, ".less") . ".css";
 
-			$less = new lessc;
-
-			if (isset($cacheFile) && file_exists($cacheFile)) {
-				$cache = unserialize(file_get_contents($cacheFile));
-			} else {
-				$cache = $inputFile;
-			}
-	
-			$less = new lessc;
-			if($addon['settings']['SELECT'][1] != 'FALSE') $less->setFormatter($addon['settings']['SELECT'][1]);
-			$newCache = $less -> cachedCompile($cache);
-	
-			if (isset($cacheFile) && (!is_array($cache) || $newCache["updated"] > $cache["updated"])) {
-				if ($cacheFile != '') file_put_contents($cacheFile, serialize($newCache));
-				file_put_contents($outputFile, $newCache['compiled']);
-			}
-
-			$less -> setImportDir(array($output_path));
-			// create a new cache object, and compile
-			$cache = $less -> cachedCompile($inputFile);
-
-			file_put_contents($output_path . $outputFile, $cache["compiled"]);
-
-			// the next time we run, write only if it has updated
-			$last_updated = $cache["updated"];
-			$cache = $less -> cachedCompile($cache);
-			if ($cache["updated"] > $last_updated) {
-				file_put_contents($output_path . $outputFile, $cache["compiled"]);
-			}
-			
-					$cacheFile = $inputFile . ".cache";
-
-
+			autoCompileLess($inputFile, $output_path.$outputFile);
 
 		}
 	}
