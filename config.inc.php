@@ -32,8 +32,8 @@ $Revision = '';
 $REX['ADDON'][$mypage]['VERSION'] = array
 (
 'VERSION'      => 0,
-'MINORVERSION' => 3,
-'SUBVERSION'   => 8,
+'MINORVERSION' => 4,
+'SUBVERSION'   => 0,
 );
 $REX['ADDON']['version'][$mypage]     = implode('.', $REX['ADDON'][$mypage]['VERSION']);
 $REX['ADDON']['author'][$mypage]      = 'rexdev.de';
@@ -63,7 +63,7 @@ $REX['ADDON'][$mypage]['params_cast'] = array (
 $REX["ADDON"]["rex_less"]["settings"] = array (
   'TEXTINPUT' => 
   array (
-    1 => 'assets/css/skin_rfid-experts',
+    1 => 'files',
   ),
   'SELECT' => 
   array (
